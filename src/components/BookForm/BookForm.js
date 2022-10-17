@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import "./BookForm.css";
 
 function BookForm() {
+  const [book, setBook] = useState([]);
+
   return (
     <Form>
       <h2 className="head">Book Form</h2>
@@ -26,29 +28,14 @@ function BookForm() {
         <Form.Control as="textarea" rows={2} />
       </Form.Group>
 
-      {['checkbox'].map((type) => (
-        <div key={`inline-${type}`} className="m-3">
-          <Form.Check
-            inline
-            label="фантастика"
-            name="group1"
-            type={type}
-            id={`inline-${type}-1`}
-          />
-          <Form.Check
-            inline
-            label="детектив"
-            name="group1"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-          <Form.Check
-            inline
-            label="драма"
-            type={type}
-            id={`inline-${type}-3`}
-          />
-        </div>
+      {["Фантастика", "Детектив", "Драма"].map((label) => (
+        <Form.Check
+          className="m-3"
+          inline
+          label={label}
+          type="checkbox"
+          id={`inline-${label}-3`}
+        />
       ))}
 
       <Row className="m-2">
@@ -64,26 +51,25 @@ function BookForm() {
             <option>Английский</option>
           </Form.Select>
         </Form.Group>
-        <div className="m-2">Наличие</div>
-        {["radio"].map((type) => (
-          <div key={`inline-${type}`} className="mb-3">
-            <Form.Check
-              inline
-              label="Есть"
-              name="group1"
-              type={type}
-              id={`inline-${type}-1`}
-            />
-            <Form.Check
-              inline
-              label="Нету"
-              name="group1"
-              type={type}
-              id={`inline-${type}-2`}
-            />
-          </div>
-        ))}
 
+        <div className="m-2">Наличие</div>
+        <div className="availability">
+          {["Есть", "Нету"].map((label) => (
+            <div
+              key={`inline-${label}`}
+              className="m-1
+          "
+            >
+              <Form.Check
+                inline
+                name="group1"
+                label={label}
+                type="radio"
+                id={`inline-${label}-1`}
+              />
+            </div>
+          ))}
+        </div>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Control type="file" size="sm" />
         </Form.Group>

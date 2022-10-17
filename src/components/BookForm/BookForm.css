@@ -1,19 +1,22 @@
-form{
-    max-width: 600px;
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 30px;
-    margin-left: 29%;
-    background-color:  rgb(78, 94, 241);
-    margin-top: 30px;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
+form {
+  max-width: 600px;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 30px;
+  margin-left: 29%;
+  background-color: rgb(78, 94, 241);
+  margin-top: 30px;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
 }
-.head{
-    text-align: center;
-    margin: 10px;
+.head {
+  text-align: center;
+  margin: 10px;
 }
-.buttons{
-    display: flex;
-    justify-content: space-around;
-
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+.availability {
+  display: flex;
+  margin: 10px;
 }
