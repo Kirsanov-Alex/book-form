@@ -20,3 +20,9 @@ form {
   display: flex;
   margin: 10px;
 }
+.image {
+  height: 100px;
+  width: 80px;
+  border: 1px dashed gray;
+  border-radius: 12px;
+}
