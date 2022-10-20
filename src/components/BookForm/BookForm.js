@@ -4,26 +4,11 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./BookForm.css";
+import {emptyBook, GENRES, AVAILABILITIES} from "../constants"
 
 function BookForm() {
-  const emptyBook = {
-    bookName: "",
-    authorName: "",
-    discription: "",
-    genre: [],
-    cost: "",
-    language: "",
-    availability: "",
-    file: "",
-  };
 
   const [book, setBook] = useState(emptyBook);
-
-  const CHECKBOXES = [
-    { id: "Фантастика" },
-    { id: "Детектив" },
-    { id: "Драма" },
-  ];
 
   const onChangeCheckbox = (outputId) => {
     const position = book.genre.indexOf(outputId);
@@ -51,10 +36,10 @@ function BookForm() {
   };
 
   const checkAll = () => {
-    if (book.genre.length === CHECKBOXES.length) {
+    if (book.genre.length === GENRES.length) {
       book.genre.splice(0);
     } else {
-      CHECKBOXES.forEach(({ id }) => {
+      GENRES.forEach(({ id }) => {
         if (book.genre.indexOf(id) === -1) {
           book.genre.push(id);
         }
@@ -65,13 +50,13 @@ function BookForm() {
 
   const previewForm = () => {
     alert(`
-    Book : ${book.bookName}
-    Author : ${book.authorName}
-    Discription : ${book.discription}
-    Genre : ${book.genre}
-    Cost : ${book.cost} грн
-    Language : ${book.language}
-    Availability : ${book.availability}
+    Название книги : ${book.bookName}
+    Автор : ${book.authorName}
+    Описание : ${book.discription}
+    Жанр : ${book.genre}
+    Стоимость : ${book.cost} грн
+    Язык : ${book.language}
+    Наличие : ${book.availability}
     `);
   };
 
@@ -111,7 +96,7 @@ function BookForm() {
         />
       </Form.Group>
 
-      {CHECKBOXES.map(({ id }) => (
+      {GENRES.map(({ id }) => (
         <Form.Check
           value={book.genre}
           name="genre"
@@ -154,16 +139,16 @@ function BookForm() {
 
         <div className="m-2">Наличие</div>
         <div className="availability">
-          {["Есть", "Нету"].map((availability) => (
-            <div key={availability} className="m-1">
+          {AVAILABILITIES.map(({ label, value }) => (
+            <div key={label} className="m-1">
               <Form.Check
-                value={availability}
+                value={value}
                 onChange={onChangeForm}
                 inline
                 name="availability"
-                label={availability}
+                label={label}
                 type="radio"
-                checked={book.availability === availability}
+                checked={book.availability === value}
               />
             </div>
           ))}
@@ -175,11 +160,16 @@ function BookForm() {
             onChange={onImageChange}
             size="sm"
           />
-          <img
+          {book.file ? (
+            <img className="image" alt="" src={book.file} />
+          ) : (
+            <span>Файл не выбран</span>
+          )}
+          {/* <img
             className="image"
             src={book.file ? book.file : "no_photo.jpg"}
             alt="Файл не выбран"
-          />
+          /> */}
         </Form.Group>
 
         <div className="buttons">
